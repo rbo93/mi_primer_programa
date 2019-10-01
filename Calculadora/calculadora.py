@@ -25,3 +25,5 @@ while continuar == "SI":
 
     print("El resultado es {}".format(resultado))
     continuar = input("Si desea realizar otra operacion ingrese SI: ").upper()
+
+print("Operaciones matematicas realizadas con exito.")
