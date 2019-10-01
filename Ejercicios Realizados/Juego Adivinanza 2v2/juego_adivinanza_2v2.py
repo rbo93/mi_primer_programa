@@ -9,7 +9,6 @@ print("El JUGADOR 1 debera ingresar el numero a adivinar, el JUGADOR 2 tendra in
 numero_adivinar = input("JUGADOR 1, ingrese el numero a adivinar: ")
 os.system("cls")
 
-
 while intento != "S" and intento != "G" :
     intento = input("JUGADOR 2, ingrese el numero que cree que eligio el JUGADOR 1: ")
     cantidad_de_intentos += 1
