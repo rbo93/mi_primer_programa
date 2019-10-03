@@ -27,10 +27,10 @@ num = int(input("Dime un numero: "))
 
 result = in_range(num)
 
-print(result)
 if result == True:
     text = "dentro"
 else:
     text = "fuera"
 
+print(result)
 print("El numero se encuentra {} de rango".format(text))
