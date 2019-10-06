@@ -18,8 +18,8 @@ De quien quieres saber el numero: Nate
 
 salida = False
 agenda = dict()
-while not saida:
-    accion = input(¿Que quieres hacer? [Añadir numero [A] / Consultar numero[C]] / Salir[S] )
+while not salida:
+    accion = input("¿Que quieres hacer? [Añadir numero [A] / Consultar numero[C]] / Salir[S] ")
     # Añadir numero
     if accion == "A":
         print("Vamos a añadir un numero de telefono")
@@ -31,5 +31,5 @@ while not saida:
         print("Consultar numero: ")
         nombre = input("De quien quieres saber el numero: ")
         print(agenda[nombre])
-    elif accion == "S"
+    elif accion == "S":
         salida = True
