@@ -44,10 +44,12 @@ def show_menu():
 
 def add_contact(contacts):
     print("\n\nAñadir contacto\n")
+    contact_id = len(contacts) + 1
     contact = {
         "name": input("Nombre: "),
         "phone": input("Teléfono: "),
-        "email": input("Email: ")
+        "email": input("Email: "),
+        "id": contact_id
     }
     contacts.append(contact)
     print("Se ha añadido el contacto {} correctamente\n".format(contact["name"]))
@@ -55,36 +57,72 @@ def add_contact(contacts):
 
 
 def remove_contact(contacts):
-    pass
+    index_to_delete = find_contact(contacts)
+    contacts.pop(index_to_delete)
+    sleep(3)
+    print("Se elimino el contacto correctamente.")
 
 
 def find_contact(contacts):
-    print("\n\nBuscar contacto\n")
-    search_term = input("Introducir el nombre del contacto o parte de él: ")
-    found_contacts = []
+    answer = "si"
+    while answer == "si":
+        print("\n\nBuscar contacto\n")
+        search_by = input("Desea buscar por email o por nombre? [email / name]: ")
+        while search_by != "email" and search_by != "name":
+            search_by = input("Desea buscar por email o por nombre? [email / name]: ")
 
-    print("He encontrado los siguientes contactos:")
-    contact_indexes = []
-    contact_counter = 0
+        if search_by == "name":
+            search_term = input("Introducir el nombre del contacto o parte de él: ")
+            found_contacts = []
 
-    for contact in contacts:
-        if contact["name"].find(search_term) >= 0:
-            found_contacts.append(contact)
-            print("{} - {}".format(contact_counter, contact["name"]))
-            contact_indexes.append(contact_counter)
-            contact_counter += 1
+            print("He encontrado los siguientes contactos:")
+            contact_indexes = []
+            contact_counter = 0
 
-    contact_index = 0
+            for contact in contacts:
+                if contact["name"].find(search_term) >= 0:
+                    found_contacts.append(contact)
+                    print("{} - {}".format(contact_counter, contact["name"]))
+                    contact_indexes.append(contact_counter)
+                    contact_counter += 1
 
-    if len(contact_indexes) > 1:
-        contact_index = ask_until_option_expected(contact_indexes)
-    elif len(contact_indexes) == 0:
-        print("No se ha encontrado ninguno.")
-        return
+            contact_index = 0
+            answer = "no"
+            if len(contact_indexes) > 1:
+                contact_index = ask_until_option_expected(contact_indexes)
+            elif len(contact_indexes) == 0:
+                print("No se ha encontrado ninguno.")
+                answer = input("Deseas hacer otra busqueda? [si,no]: ")
+                if answer == "no":
+                    return
+        elif search_by == "email":
+            search_term = input("Introducir el email del contacto o parte de él: ")
+            found_contacts = []
 
-    print("\nInformación sobre {}\n".format(found_contacts[contact_index]["name"]))
-    print("Nombre: {name}, Telefono: {phone}, Email: {email}\n\n".format(**found_contacts[contact_index]))
+            print("He encontrado los siguientes contactos:")
+            contact_indexes = []
+            contact_counter = 0
+
+            for contact in contacts:
+                if contact["email"].find(search_term) >= 0:
+                    found_contacts.append(contact)
+                    print("{} - {}".format(contact_counter, contact["email"]))
+                    contact_indexes.append(contact_counter)
+                    contact_counter += 1
+
+            contact_index = 0
+            answer = "no"
+            if len(contact_indexes) > 1:
+                contact_index = ask_until_option_expected(contact_indexes)
+            elif len(contact_indexes) == 0:
+                print("No se ha encontrado ninguno.")
+                answer = input("Deseas hacer otra busqueda? [si,no]: ")
+                if answer == "no":
+                    return
+
+    print("Nombre: {name}, Telefono: {phone}, Email: {email}\n".format(**found_contacts[contact_index]))
     sleep(2)
+    return int(contact_index-1)
 
 
 def export_contacts():
