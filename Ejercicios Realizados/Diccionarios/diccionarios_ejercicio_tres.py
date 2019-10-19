@@ -16,7 +16,7 @@ apariciones_palabras = {"Hola": 0, "como": 0, "estas": 0, "amigo": 0}
 lista_de_palabras = []
 palabra = ""
 i = 0
-
+# podria haber una lista de las keys de apariciones_palabras y en la funcion recorrer la lista y pregutnar
 for index in string:
     if index != " ":
         palabra += index

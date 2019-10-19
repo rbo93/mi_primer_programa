@@ -7,6 +7,7 @@ Crea un programa que sea capaz de guardar los nombres de tus amigos y sus años 
 
 salida = False
 agenda = dict()
+
 while not salida:
     accion = input("¿Que quieres hacer? Añadir fecha[A] / Consultar numero[C]] / Salir[S]" )
     # Añadir fecha
